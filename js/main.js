@@ -1,165 +1,11 @@
-// Declaro array con productos
-const productos = [
-    {
-        id: "buzo-01",
-        titulo: "Buzo 01",
-        imagen: "./assets/buzo.webp",
-        categoria: {
-            nombre: "Buzos",
-            id:"buzos",
-        },
-        precio: 10000
-    },{
-        id: "buzo-02",
-        titulo: "Buzo 02",
-        imagen: "./assets/buzo1.webp",
-        categoria: {
-            nombre: "Buzos",
-            id:"buzos",
-        },
-        precio: 15000
-    },
-    {
-        id: "buzo-03",
-        titulo: "Buzo 03",
-        imagen: "./assets/buzo2.webp",
-        categoria: {
-            nombre: "Buzos",
-            id:"buzos",
-        },
-        precio: 20000
-    },
-    {
-        id: "buzo-04",
-        titulo: "Buzo 04",
-        imagen: "./assets/buzo3.webp",
-        categoria: {
-            nombre: "Buzos",
-            id:"buzos",
-        },
-        precio: 220000
-    },
-    {
-        id: "gorro-01",
-        titulo: "Gorro 01",
-        imagen: "./assets/gorro.webp",
-        categoria: {
-            nombre: "Gorros",
-            id:"gorros",
-        },
-        precio: 6000        
-    },
-    {
-        id: "gorro-02",
-        titulo: "Gorro 02",
-        imagen: "./assets/gorro1.webp",
-        categoria: {
-            nombre: "Gorros",
-            id:"gorros",
-        },
-        precio: 8000        
-    },
-    {
-        id: "gorro-03",
-        titulo: "Gorro 03",
-        imagen: "./assets/gorro2.webp",
-        categoria: {
-            nombre: "Gorros",
-            id:"gorros",
-        },
-        precio: 5200        
-    },
-    {
-        id: "gorro-04",
-        titulo: "Gorro 04",
-        imagen: "./assets/gorro3.webp",
-        categoria: {
-            nombre: "Gorros",
-            id:"gorros",
-        },
-        precio: 4650        
-    },
-    {
-        id: "gorro-05",
-        titulo: "Gorro 05",
-        imagen: "./assets/gorro4.webp",
-        categoria: {
-            nombre: "Gorros",
-            id:"gorros",
-        },
-        precio: 4800        
-    },
-    {
-        id: "gorro-06",
-        titulo: "Gorro 06",
-        imagen: "./assets/gorro5.webp",
-        categoria: {
-            nombre: "Gorros",
-            id:"gorros",
-        },
-        precio: 6200        
-    },
-    {
-        id: "bermuda-01",
-        titulo: "Bermuda 01",
-        imagen: "./assets/pantalon.webp",
-        categoria: {
-            nombre: "Bermudas",
-            id:"bermudas",
-        },
-        precio: 30000        
-    },
-    {
-        id: "bermuda-02",
-        titulo: "Bermuda 02",
-        imagen: "./assets/pantalon1.webp",
-        categoria: {
-            nombre: "Bermudas",
-            id:"bermudas",
-        },
-        precio: 31422       
-    },
-    {
-        id: "bermuda-03",
-        titulo: "Bermuda 03",
-        imagen: "./assets/pantalon2.webp",
-        categoria: {
-            nombre: "Bermudas",
-            id:"bermudas",
-        },
-        precio: 29565        
-    },
-    {
-        id: "bermuda-04",
-        titulo: "Bermuda 04",
-        imagen: "./assets/pantalon3.webp",
-        categoria: {
-            nombre: "Bermudas",
-            id:"bermudas",
-        },
-        precio: 24658        
-    },
-    {
-        id: "bermuda-05",
-        titulo: "Bermuda 05",
-        imagen: "./assets/pantalon4.webp",
-        categoria: {
-            nombre: "Bermudas",
-            id:"bermudas",
-        },
-        precio: 31522        
-    },
-    {
-        id: "bermuda-06",
-        titulo: "Bermuda 06",
-        imagen: "./assets/pantalon5.webp",
-        categoria: {
-            nombre: "Bermudas",
-            id:"bermudas",
-        },
-        precio: 33522        
-    }
-]
+let productos = [];
+
+fetch("./js/productos.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data;
+        cargarProductos(productos);
+    })
 
 //traigo los elementos con su id y/o className y los defino en variables
 
@@ -242,6 +88,25 @@ if(productosEnCarritoLS){
 //Defino una f() para pushear las elecciones del cliente al array vacio 
 
 function agregarAlCarrito(e) {
+    // Utilizo libreria toastify
+    Toastify({
+        text: "agregado",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", 
+        position: "center",
+        stopOnFocus: true, 
+        style: {
+          background: "linear-gradient(to right, #E28973, #AA6775)",
+          borderRadius: "2rem",
+          textTransform: "upperCase",
+          fontSize: "0.75rem"
+        },
+        
+        onClick: function(){} // Callback after click
+      }).showToast();
+
     const idBoton = e.currentTarget.id; 
     const productoAgregado = productos.find(producto => producto.id === idBoton);
 
